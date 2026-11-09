@@ -150,3 +150,14 @@ bot.on('document', async (ctx) => {
 
 bot.launch();
 console.log('✅ Бот успішно запущено і готовий до роботи!');
+
+// --- Фиктивный HTTP-сервер для удержания порта на Render ---
+const http = require('http');
+const server = http.createServer((req, res) => {
+  res.writeHead(200, { 'Content-Type': 'text/plain' });
+  res.end('Bot is running successfully!');
+});
+const PORT = process.env.PORT || 10000;
+server.listen(PORT, () => {
+  console.log(`HTTP server is listening on port ${PORT}`);
+});
